@@ -9,7 +9,7 @@
  * 
  * Additional Notes:  All Log function statements are for Logcat debugging purposes only
  */
-package com.ense.project374;
+package com.drew111b.idec;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,11 +33,14 @@ import android.widget.TextView;
 //Toast is a class used to display widget messages to end users
 import android.widget.Toast;
 import android.widget.VideoView;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
-@SuppressWarnings("deprecation") //several camera-related functions are out of date, so deprecation warning is necessary
-public class MainActivity extends Activity implements SurfaceHolder.Callback, OnInfoListener, OnErrorListener {
+public class MainActivity extends Activity implements 
+SurfaceHolder.Callback, OnInfoListener, OnErrorListener {
 
-	private static final String TAG = "HAYDEN_TAG"; //used for identifying our Logcat statements
+private static final String TAG = "HAYDEN_TAG"; //used for identifying our Logcat statements
 	
 	//initialize the buttons, text and video display for the main menu layout
 	private Button initializeButton = null;
@@ -221,7 +224,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback, On
 			recorder.setVideoFrameRate(15);
 			recorder.setVideoEncoder (MediaRecorder.VideoEncoder.MPEG_4_SP);
 			recorder.setAudioEncoder (MediaRecorder.AudioEncoder.AMR_NB);
-			recorder.setMaxDuration(10000); //maximum length of a single recording in ms, set at low value for testing purposes 
+			recorder.setMaxDuration(360000); //maximum length of a single recording in ms, set at low value for testing purposes 
 			recorder.setPreviewDisplay (holder.getSurface());
 			recorder.setOutputFile(outputFileName);
 			
@@ -296,7 +299,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback, On
 		    {
 		        camera.stopPreview();
 		    }
-			
+			camera.setDisplayOrientation(90); 
 			Camera.Parameters cameraParameters = camera.getParameters();
 			cameraParameters.setPreviewSize (width, height);
 			camera.setParameters(cameraParameters);
